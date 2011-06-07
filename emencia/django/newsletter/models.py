@@ -156,8 +156,9 @@ class MailingList(models.Model):
     name = models.CharField(_('name'), max_length=255)
     description = models.TextField(_('description'), blank=True)
 
-    subscribers = models.ManyToManyField(Contact, verbose_name=_('subscribers'),
-                                         related_name='mailinglist_subscriber')
+    subscribers = models.ManyToManyField(Contact, verbose_name=_('subscribers'), 
+                                         related_name='mailinglist_subscriber',
+                                         null=True, blank=True)
     unsubscribers = models.ManyToManyField(Contact, verbose_name=_('unsubscribers'),
                                            related_name='mailinglist_unsubscriber',
                                            null=True, blank=True)
@@ -335,7 +336,7 @@ class ContactMailingStatus(models.Model):
 
 
 class WorkGroup(models.Model):
-    """Work Group for privatization of the ressources"""
+    """Work Group for privatization of the resources"""
     name = models.CharField(_('name'), max_length=255)
     group = models.ForeignKey(Group, verbose_name=_('permissions group'))
 
